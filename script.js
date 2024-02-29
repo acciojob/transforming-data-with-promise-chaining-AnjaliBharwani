@@ -1,60 +1,65 @@
 //your JS code here. If required.
-// Get the input and output elements
-const input = document.getElementById("ip");
-const output = document.getElementById("output");
-const btn = document.getElementById("btn");
+let input = document.getElementById("ip");
+let btn = document.getElementById("btn");
+let output = document.getElementById("output")
 
-// Add event listener to the button
-btn.addEventListener("click", () => {
-  // Parse the input value as a number
-  const initialValue = parseInt(input.value);
-
-  // Create a promise that resolves after 2 seconds with the initial value
-  const initialPromise = new Promise(resolve => {
+btn.addEventListener("click" , PromiseChaining)
+function PromiseChaining(){
+  const promise1 = new Promise((resolve) => {
     setTimeout(() => {
-      resolve(initialValue);
+      resolve(input.value);
     }, 2000);
   });
 
-  // Chain promises to perform operations
-  initialPromise
-    .then(number => {
-      output.textContent = `Result: ${number}`;
-      return new Promise(resolve => {
+  promise1
+    .then((result) => {
+      output.textContent = `Result: ${result}`;
+      return result;
+    })
+    .then((result) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(number * 2);
+          resolve(result * 2);
         }, 1000);
       });
     })
-    .then(number => {
-      output.textContent = `Result: ${number}`;
-      return new Promise(resolve => {
+    .then((result) => {
+      output.textContent = `Result: ${result}`;
+      return result;
+    })
+    .then((result) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(number - 3);
+          resolve(result - 3);
         }, 1000);
       });
     })
-    .then(number => {
-      output.textContent = `Result: ${number}`;
-      return new Promise(resolve => {
+    .then((result) => {
+      output.textContent = `Result: ${result}`;
+      return result;
+    })
+    .then((result) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(number / 2);
+          resolve(result / 2);
         }, 1000);
       });
     })
-    .then(number => {
-      output.textContent = `Result: ${number}`;
-      return new Promise(resolve => {
+    .then((result) => {
+      output.textContent = `Result: ${result}`;
+      return result;
+    })
+    .then((result) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(number + 10);
+          resolve(result + 10);
         }, 1000);
       });
     })
-    .then(finalResult => {
-      output.textContent = `Final Result: ${finalResult}`;
+    .then((result) => {
+      output.textContent = `Final Result: ${result}`;
     })
-    .catch(error => {
-      // Handle errors if any
-      console.error("An error occurred:", error);
+    .catch((error) => {
+      console.error(error);
     });
-});
+}
